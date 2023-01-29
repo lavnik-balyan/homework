@@ -2,13 +2,16 @@
     "assignment_name": "Assignment 1",
     "contributors": [
         {
-            "name": "Jordan Matelsky",
-            "pennkey": "matelsky"
+            "name": "Lavnik Balyan",
+            "pennkey": "lavnikb"
+        },
+        {
+            "name": "Eesha Shekhar",
+            "pennkey": "eshekhar"
         }
     ],
     "sources": [
-        "https://example.com",
-        "Conversations with TA (include TA's name)",
-        "LLM (include information about the LLM and how it was used)"
+        "StackOverflow - multiple websites.",
+        "ChatGPT - didn't use for full code, but for closed form solution confirmation."
     ]
 }
