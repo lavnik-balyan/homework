@@ -1,10 +1,12 @@
 import numpy as np
 
+
 class LinearRegression:
 
     """
     Defining parameters
     """
+
     w: np.ndarray
     b: float
 
@@ -42,7 +44,16 @@ class GradientDescentLinearRegression(LinearRegression):
     A linear regression model that uses gradient descent to fit the model.
     """
 
-    def fit(self, X: np.ndarray, y: np.ndarray, lr: float = 0.01, epochs: int = 1000) -> None:
+    w: np.ndarray
+    b: float
+
+    def __init__(self):
+        self.w = None
+        self.b = 0
+
+    def fit(
+        self, X: np.ndarray, y: np.ndarray, lr: float = 0.01, epochs: int = 1000
+    ) -> None:
         """
         Fitting the model on X and y.
 
@@ -50,7 +61,21 @@ class GradientDescentLinearRegression(LinearRegression):
             X (np.ndarray): The input data.
             y (np.ndarray): The output data.
         """
-        raise NotImplementedError()
+        # want to randomly initialize the weights and the bias
+        self.b = 0
+        self.w = np.random.randn(X.shape[1])
+        for i in range(epochs):
+            dw, db = self._compute_gradient(X, y)
+            self.w = self.w - (lr * dw)
+            self.b = self.b - (lr * db)
+
+    def _compute_gradient(self, X, y):
+        # calculating Xtranspose.Y
+        y_pred = self.predict(X)
+        diff = y_pred - y
+        diff_w = np.multiply(np.divide(2, X.shape[0]), (X.T @ diff))
+        diff_b = np.multiply(np.divide(2, X.shape[0]), np.sum(diff))
+        return (diff_w, diff_b)
 
     def predict(self, X: np.ndarray) -> np.ndarray:
         """
@@ -63,4 +88,4 @@ class GradientDescentLinearRegression(LinearRegression):
             np.ndarray: The predicted output.
 
         """
-        raise NotImplementedError()
+        return X.dot(self.w) + self.b
