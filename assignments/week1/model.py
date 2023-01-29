@@ -32,7 +32,6 @@ class LinearRegression:
 
         Returns:
             np.ndarray: The predicted output.
-
         """
         return X.dot(self.w) + self.b
 
