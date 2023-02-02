@@ -1,7 +1,6 @@
 import torch
 from typing import Callable
 
-
 class MLP:
     def __init__(
         self,
