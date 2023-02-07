@@ -34,7 +34,7 @@ class MLP(nn.Module):
         self.relu2 = nn.ReLU()
         self.fc3 = nn.Linear(64, num_classes)
 
-    def forward(self, x):
+    def forward(self, x) -> torch.Tensor:
         """
         Forward pass of the network.
 
