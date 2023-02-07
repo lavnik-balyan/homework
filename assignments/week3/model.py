@@ -24,7 +24,7 @@ class MLP(torch.nn.module):
             initializer: The initializer to use for the weights.
         """
         self.fc1 = nn.Linear(input_size, hidden_size)
-        self.relu1 = activation
+        self.relu1 = nn.ReLU()
         self.fc2 = nn.Linear(hidden_size, num_classes)
 
     def forward(self, x):
