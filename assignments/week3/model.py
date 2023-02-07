@@ -7,6 +7,7 @@ class MLP(nn.Module):
     """
     Defining an MLP class with two hidden layers.
     """
+
     def __init__(
         self,
         input_size: int,
