@@ -11,7 +11,7 @@
         }
     ],
     "sources": [
-        "StackOverflow for Dropout implementation and architecture hints",
-        "ChatGPT - didn't use for full code, but tested tool for model structure."
+        "StackOverflow for architecture hints",
+        "Week 3 worksheets"
     ]
 }

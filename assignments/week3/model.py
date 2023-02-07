@@ -26,7 +26,9 @@ class MLP(nn.Module):
         super(MLP, self).__init__()
         self.fc1 = nn.Linear(input_size, hidden_size)
         self.relu1 = nn.ReLU()
-        self.fc2 = nn.Linear(hidden_size, num_classes)
+        self.fc2 = nn.Linear(hidden_size, 32)
+        self.relu2 = nn.ReLU()
+        self.fc3 = nn.Linear(32, num_classes)
 
     def forward(self, x):
         """
@@ -41,4 +43,6 @@ class MLP(nn.Module):
         out = self.fc1(x)
         out = self.relu1(out)
         out = self.fc2(out)
+        out = self.relu2(out)
+        out = self.fc3(out)
         return out
