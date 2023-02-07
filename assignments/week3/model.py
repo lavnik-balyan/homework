@@ -4,6 +4,9 @@ from typing import Callable
 
 
 class MLP(nn.Module):
+    """
+    Defining an MLP class with two hidden layers.
+    """
     def __init__(
         self,
         input_size: int,
@@ -26,9 +29,9 @@ class MLP(nn.Module):
         super(MLP, self).__init__()
         self.fc1 = nn.Linear(input_size, hidden_size)
         self.relu1 = nn.ReLU()
-        self.fc2 = nn.Linear(hidden_size, 32)
+        self.fc2 = nn.Linear(hidden_size, 64)
         self.relu2 = nn.ReLU()
-        self.fc3 = nn.Linear(32, num_classes)
+        self.fc3 = nn.Linear(64, num_classes)
 
     def forward(self, x):
         """
