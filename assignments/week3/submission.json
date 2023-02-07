@@ -4,9 +4,14 @@
         {
             "name": "Lavnik Balyan",
             "pennkey": "lavnikb"
+        },
+        {
+            "name": "Eesha Shekhar",
+            "pennkey": "eshekhar"
         }
     ],
     "sources": [
-        "none so far"
+        "StackOverflow for Dropout implementation and architecture hints",
+        "ChatGPT - didn't use for full code, but tested tool for model structure."
     ]
 }
