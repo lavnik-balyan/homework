@@ -2,6 +2,7 @@ import torch
 import torch.nn as nn
 from typing import Callable
 
+
 class MLP(torch.nn.module):
     def __init__(
         self,
