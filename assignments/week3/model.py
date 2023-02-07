@@ -32,9 +32,13 @@ class MLP(nn.Module):
         self.relu1 = nn.ReLU()
         self.fc2 = nn.Linear(hidden_size, 256)
         self.relu2 = nn.ReLU()
-        self.fc3 = nn.Linear(256, 64)
+        self.fc3 = nn.Linear(256, 128)
         self.relu3 = nn.ReLU()
-        self.fc4 = nn.Linear(64, num_classes)
+        self.fc4 = nn.Linear(128, 64)
+        self.relu4 = nn.ReLU()
+        self.fc5 = nn.Linear(64, 32)
+        self.relu5 = nn.ReLU()
+        self.fc6 = nn.Linear(32, num_classes)
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
         """
@@ -49,5 +53,7 @@ class MLP(nn.Module):
         out = self.relu1(self.fc1(x))
         out = self.relu2(self.fc2(out))
         out = self.relu3(self.fc3(out))
-        out = self.fc4(out)
+        out = self.relu4(self.fc4(out))
+        out = self.relu5(self.fc5(out))
+        out = self.fc6(out)
         return out
