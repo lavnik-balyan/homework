@@ -34,7 +34,7 @@ class MLP(nn.Module):
         self.relu2 = nn.ReLU()
         self.fc3 = nn.Linear(256, 64)
         self.relu3 = nn.ReLU()
-        self.dropout = nn.Dropout(0.2)
+        self.dropout = nn.Dropout(0.3)
         self.fc4 = nn.Linear(64, num_classes)
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
