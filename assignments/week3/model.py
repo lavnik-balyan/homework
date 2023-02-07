@@ -29,13 +29,13 @@ class MLP(nn.Module):
         """
         super(MLP, self).__init__()
         self.fc1 = nn.Linear(input_size, hidden_size)
-        self.relu1 = nn.ReLU()
+        self.relu1 = nn.GELU()
         self.fc2 = nn.Linear(hidden_size, 256)
-        self.relu2 = nn.ReLU()
+        self.relu2 = nn.GELU()
         self.fc3 = nn.Linear(256, 128)
-        self.relu3 = nn.ReLU()
+        self.relu3 = nn.GELU()
         self.fc4 = nn.Linear(128, 32)
-        self.relu4 = nn.ReLU()
+        self.relu4 = nn.GELU()
         self.fc5 = nn.Linear(32, num_classes)
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
