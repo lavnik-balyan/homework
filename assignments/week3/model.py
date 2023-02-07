@@ -30,9 +30,11 @@ class MLP(nn.Module):
         super(MLP, self).__init__()
         self.fc1 = nn.Linear(input_size, hidden_size)
         self.relu1 = nn.ReLU()
-        self.fc2 = nn.Linear(hidden_size, 64)
+        self.fc2 = nn.Linear(hidden_size, 128)
         self.relu2 = nn.ReLU()
-        self.fc3 = nn.Linear(64, num_classes)
+        self.fc3 = nn.Linear(128, 32)
+        self.relu3 = nn.ReLU()
+        self.fc4 = nn.Linear(32, num_classes)
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
         """
@@ -44,9 +46,8 @@ class MLP(nn.Module):
         Returns:
             The output of the network.
         """
-        out = self.fc1(x)
-        out = self.relu1(out)
-        out = self.fc2(out)
-        out = self.relu2(out)
-        out = self.fc3(out)
+        out = self.relu1(self.fc1(x))
+        out = self.relu2(self.fc2(out))
+        out = self.relu3(self.fc3(out))
+        out = self.fc4(out)
         return out
