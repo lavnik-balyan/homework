@@ -3,7 +3,7 @@ import torch.nn as nn
 from typing import Callable
 
 
-class MLP(torch.nn.module):
+class MLP(nn.Module):
     def __init__(
         self,
         input_size: int,
@@ -23,6 +23,7 @@ class MLP(torch.nn.module):
             activation: The activation function to use in the hidden layer.
             initializer: The initializer to use for the weights.
         """
+        super(MLP, self).__init__()
         self.fc1 = nn.Linear(input_size, hidden_size)
         self.relu1 = nn.ReLU()
         self.fc2 = nn.Linear(hidden_size, num_classes)
