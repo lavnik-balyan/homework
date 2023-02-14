@@ -2,7 +2,13 @@ from typing import Callable
 import torch
 import torch.optim
 import torch.nn as nn
-from torchvision.transforms import Compose, Normalize, ToTensor, RandomRotation, RandomHorizontalFlip
+from torchvision.transforms import (
+    Compose,
+    Normalize,
+    ToTensor,
+    RandomRotation,
+    RandomHorizontalFlip,
+)
 
 
 class CONFIG:
@@ -13,7 +19,7 @@ class CONFIG:
 
     lrs_kwargs = {
         # You can pass arguments to the learning rate scheduler (0.4914, 0.4822, 0.4465), (0.247, 0.243, 0.261)
-        # constructor here.
+        # constructor here. (0.5, 0.5, 0.5), (0.5, 0.5, 0.5)
     }
 
     optimizer_factory: Callable[
@@ -29,6 +35,6 @@ class CONFIG:
             transforms.RandomRotation(10),
             transforms.RandomHorizontalFlip(),
             ToTensor(),
-            Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))
+            Normalize((0.4914, 0.4822, 0.4465), (0.247, 0.243, 0.261)),
         ]
     )
