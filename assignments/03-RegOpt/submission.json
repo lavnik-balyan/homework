@@ -1,8 +1,10 @@
 {
     "assignment_name": "RegOpt",
     "contributors": [
-        {"name": "Lavnik Balyan", "pennkey": "lavnikb"},
-        {"name": "Eesha Shekhar", "pennkey": "eshekhar"}
+        {"name": "Lavnik Balyan",
+          "pennkey": "lavnikb"},
+        {"name": "Eesha Shekhar",
+          "pennkey": "eshekhar"}
     ],
     "sources": ["To be added!"]
 }
