@@ -40,6 +40,6 @@ class CustomLRScheduler(_LRScheduler):
         # Here's our dumb baseline implementation:
         # return [i for i in self.base_lrs]
         return [
-            base_lr * self.gamma ** (self.last_epoch / self.step_size)
+            base_lr * self.gamma ** (self.last_epoch // self.step_size)
             for base_lr in self.base_lrs
         ]
