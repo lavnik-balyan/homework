@@ -1,12 +1,16 @@
 {
     "assignment_name": "RegOpt",
     "contributors": [
-        {
-            "name": "Change this to your name",
-            "pennkey": "MyPennKey"
-        }
+      {
+          "name": "Lavnik Balyan",
+          "pennkey": "lavnikb"
+      },
+      {
+          "name": "Eesha Shekhar",
+          "pennkey": "eshekhar"
+      }
     ],
     "sources": [
-        "Don't forget to list your sources/attribution here!"
+        "To be added!"
     ]
 }
