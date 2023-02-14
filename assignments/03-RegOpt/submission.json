@@ -1,10 +1,17 @@
 {
     "assignment_name": "RegOpt",
     "contributors": [
-        {"name": "Lavnik Balyan",
-          "pennkey": "lavnikb"},
-        {"name": "Eesha Shekhar",
-          "pennkey": "eshekhar"}
+      {
+          "name": "Lavnik Balyan",
+          "pennkey": "lavnikb"
+      },
+      {
+          "name": "Eesha Shekhar",
+          "pennkey": "eshekhar"
+      }
     ],
-    "sources": ["To be added!"]
+    "sources": [
+        "StackOverflow posts",
+        "Normalize() values from here: https://github.com/kuangliu/pytorch-cifar/issues/19"
+    ]
 }

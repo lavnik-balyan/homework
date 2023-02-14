@@ -16,6 +16,8 @@ class CustomLRScheduler(_LRScheduler):
         """
         # ... Your Code Here ...
         super(CustomLRScheduler, self).__init__(optimizer, last_epoch)
+        self.optimizer = optimizer
+        self.last_epoch = last_epoch
 
     def get_lr(self) -> List[float]:
         """
