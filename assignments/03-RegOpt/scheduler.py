@@ -9,15 +9,23 @@ class CustomLRScheduler(_LRScheduler):
 
     """
 
-    def __init__(self, optimizer, last_epoch=-1):
+    def __init__(self, optimizer, step_size=10, gamma=0.1, last_epoch=-1):
         """
         Create a new scheduler.
 
+        Arguments:
+            optimizer (torch.optim.Optimizer): Wrapped optimizer.
+            step_size (int): Period of learning rate decay.
+            gamma (float): Multiplicative factor of learning rate decay.
+            last_epoch (int): The index of the last epoch. Default: -1.
+
         """
         # ... Your Code Here ...
-        super(CustomLRScheduler, self).__init__(optimizer, last_epoch)
         self.optimizer = optimizer
         self.last_epoch = last_epoch
+        self.step_size = step_size
+        self.gamma = gamma
+        super(CustomLRScheduler, self).__init__(optimizer, step_size, gamma, last_epoch)
 
     def get_lr(self) -> List[float]:
         """
@@ -32,4 +40,8 @@ class CustomLRScheduler(_LRScheduler):
 
         # ... Your Code Here ...
         # Here's our dumb baseline implementation:
-        return [i for i in self.base_lrs]
+        # return [i for i in self.base_lrs]
+        return [
+            base_lr * self.gamma ** (self.last_epoch / self.step_size)
+            for base_lr in self.base_lrs
+        ]
