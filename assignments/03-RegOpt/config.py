@@ -18,7 +18,7 @@ class CONFIG:
     initial_weight_decay = 0
 
     lrs_kwargs = {
-        # You can pass arguments to the learning rate scheduler (0.4914, 0.4822, 0.4465), (0.247, 0.243, 0.261)
+        # You can pass arguments to the learning rate scheduler
         # constructor here.
     }
 
@@ -35,6 +35,6 @@ class CONFIG:
             RandomRotation(10),
             RandomHorizontalFlip(),
             ToTensor(),
-            Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5)),
+            Normalize((0.4914, 0.4822, 0.4465), (0.247, 0.243, 0.261)),
         ]
     )
