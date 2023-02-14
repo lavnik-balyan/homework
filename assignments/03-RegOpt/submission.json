@@ -11,7 +11,7 @@
       }
     ],
     "sources": [
-        "StackOverflow posts",
+        "Inspiration from https://pytorch.org/docs/stable/_modules/torch/optim/lr_scheduler.html",
         "Normalize() values from here: https://github.com/kuangliu/pytorch-cifar/issues/19",
         "ChatGPT used for docstrings and for experimentation"
     ]
