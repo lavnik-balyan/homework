@@ -2,8 +2,10 @@ from typing import Callable
 import torch
 import torch.optim
 import torch.nn as nn
-#from torchvision.transforms import Compose, Normalize, ToTensor
+
+# from torchvision.transforms import Compose, Normalize, ToTensor
 from torchvision.transforms import ToTensor
+
 
 class CONFIG:
     batch_size = 64
