@@ -32,8 +32,8 @@ class CONFIG:
 
     transforms = Compose(
         [
-            transforms.RandomRotation(10),
-            transforms.RandomHorizontalFlip(),
+            RandomRotation(10),
+            RandomHorizontalFlip(),
             ToTensor(),
             Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5)),
         ]
