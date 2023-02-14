@@ -25,7 +25,7 @@ class CustomLRScheduler(_LRScheduler):
         self.last_epoch = last_epoch
         self.step_size = step_size
         self.gamma = gamma
-        super(CustomLRScheduler, self).__init__(optimizer, step_size, gamma, last_epoch)
+        super(CustomLRScheduler, self).__init__(optimizer, last_epoch)
 
     def get_lr(self) -> List[float]:
         """
