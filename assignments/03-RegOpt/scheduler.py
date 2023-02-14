@@ -12,7 +12,7 @@ class CustomLRScheduler(_LRScheduler):
     def __init__(self, optimizer, last_epoch=-1):
         """
         Create a new scheduler.
-        
+
         """
         # ... Your Code Here ...
         super(CustomLRScheduler, self).__init__(optimizer, last_epoch)
