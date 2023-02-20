@@ -8,12 +8,13 @@ from torchvision.transforms import (
     ToTensor,
     RandomRotation,
     RandomHorizontalFlip,
+    RandomCrop,
 )
 
 
 class CONFIG:
     batch_size = 64
-    num_epochs = 6
+    num_epochs = 8
     initial_learning_rate = 0.001
     initial_weight_decay = 0
 
@@ -33,8 +34,8 @@ class CONFIG:
     transforms = Compose(
         [
             ToTensor(),
-            Normalize((0.4914, 0.4822, 0.4465), (0.247, 0.243, 0.261)),
+            Normalize((0.4915, 0.4823, 0.4468), (0.2470, 0.2435, 0.2616)),
+            RandomRotation(10),
             RandomHorizontalFlip(),
-            RandomRotation(4),
         ]
     )

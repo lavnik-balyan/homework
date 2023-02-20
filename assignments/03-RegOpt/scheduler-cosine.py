@@ -1,4 +1,5 @@
 from typing import List
+import math
 
 from torch.optim.lr_scheduler import _LRScheduler
 
@@ -9,20 +10,20 @@ class CustomLRScheduler(_LRScheduler):
 
     """
 
-    def __init__(self, optimizer, step_size=500, gamma=0.8, last_epoch=-1):
+    def __init__(self, optimizer, T_max=100, eta_min=0.0001, last_epoch=-1):
         """
         Create a new scheduler.
 
         Arguments:
-            optimizer (torch.optim.Optimizer): Wrapped optimizer.
-            step_size (int): Period of learning rate decay.
-            gamma (float): Multiplicative factor of learning rate decay.
-            last_epoch (int): The index of the last epoch. Default: -1.
+            optimizer (Optimizer): Wrapped optimizer.
+            T_max (int): Maximum number of iterations.
+            eta_min (float): Minimum learning rate. Default: 0.
+            last_epoch (int): The index of last epoch. Default: -1.
 
         """
         # ... Your Code Here ...
-        self.step_size = step_size
-        self.gamma = gamma
+        self.T_max = T_max
+        self.eta_min = eta_min
         super(CustomLRScheduler, self).__init__(optimizer, last_epoch)
 
     def get_lr(self) -> List[float]:
@@ -38,9 +39,12 @@ class CustomLRScheduler(_LRScheduler):
 
         # ... Your Code Here ...
         # Here's our dumb baseline implementation:
-        return [i for i in self.base_lrs]
-        # temp = [
-        #     base_lr * self.gamma ** (self.last_epoch // self.step_size)
-        #     for base_lr in self.base_lrs
-        # ]
-        # return temp
+        # return [i for i in self.base_lrs]
+        temp = [
+            self.eta_min
+            + (base_lr - self.eta_min)
+            * (1 + math.cos(math.pi * self.last_epoch / self.T_max))
+            / 2
+            for base_lr in self.base_lrs
+        ]
+        return temp
