@@ -35,5 +35,6 @@ class CONFIG:
             ToTensor(),
             Normalize((0.4914, 0.4822, 0.4465), (0.247, 0.243, 0.261)),
             RandomHorizontalFlip(),
+            RandomRotation(4),
         ]
     )
