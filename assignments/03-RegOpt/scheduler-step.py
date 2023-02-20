@@ -9,7 +9,7 @@ class CustomLRScheduler(_LRScheduler):
 
     """
 
-    def __init__(self, optimizer, step_size=500, gamma=0.8, last_epoch=-1):
+    def __init__(self, optimizer, step_size=400, gamma=0.9, last_epoch=-1):
         """
         Create a new scheduler.
 
@@ -43,4 +43,6 @@ class CustomLRScheduler(_LRScheduler):
             base_lr * self.gamma ** (self.last_epoch // self.step_size)
             for base_lr in self.base_lrs
         ]
+        if (self.last_epoch % self.step_size == 0):
+            print(temp)
         return temp
