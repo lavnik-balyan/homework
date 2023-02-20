@@ -13,7 +13,7 @@ from torchvision.transforms import (
 
 class CONFIG:
     batch_size = 64
-    num_epochs = 8
+    num_epochs = 6
     initial_learning_rate = 0.001
     initial_weight_decay = 0
 
@@ -34,5 +34,6 @@ class CONFIG:
         [
             ToTensor(),
             Normalize((0.4914, 0.4822, 0.4465), (0.247, 0.243, 0.261)),
+            RandomHorizontalFlip(),
         ]
     )
