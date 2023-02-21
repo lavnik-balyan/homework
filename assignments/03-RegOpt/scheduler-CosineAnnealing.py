@@ -10,7 +10,7 @@ class CustomLRScheduler(_LRScheduler):
 
     """
 
-    def __init__(self, optimizer, T_max=2000, eta_min=0.0001, last_epoch=-1):
+    def __init__(self, optimizer, T_max=500, eta_min=0.0001, last_epoch=-1):
         """
         Create a new scheduler.
 

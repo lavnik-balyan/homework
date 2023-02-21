@@ -8,7 +8,6 @@ from torchvision.transforms import (
     ToTensor,
     RandomRotation,
     RandomHorizontalFlip,
-    RandomCrop,
 )
 
 

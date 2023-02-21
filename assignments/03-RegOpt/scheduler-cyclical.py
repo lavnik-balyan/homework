@@ -9,20 +9,22 @@ class CustomLRScheduler(_LRScheduler):
 
     """
 
-    def __init__(self, optimizer, step_size=1000, gamma=0.1, last_epoch=-1):
+    def __init__(self, optimizer, max_lr=0.001, total_epochs, step_size, mode='triangular', gamma=1.0, last_epoch=-1):
         """
         Create a new scheduler.
 
         Arguments:
             optimizer (torch.optim.Optimizer): Wrapped optimizer.
-            step_size (int): Period of learning rate decay.
-            gamma (float): Multiplicative factor of learning rate decay.
             last_epoch (int): The index of the last epoch. Default: -1.
 
         """
         # ... Your Code Here ...
+        self.max_lr = max_lr
+        self.total_epochs = total_epochs
         self.step_size = step_size
+        self.mode = mode
         self.gamma = gamma
+        self.cycle_steps = 2 * math.floor(total_epochs / step_size)
         super(CustomLRScheduler, self).__init__(optimizer, last_epoch)
 
     def get_lr(self) -> List[float]:
@@ -39,10 +41,12 @@ class CustomLRScheduler(_LRScheduler):
         # ... Your Code Here ...
         # Here's our dumb baseline implementation:
         # return [i for i in self.base_lrs]
-        temp = [
-            base_lr * self.gamma ** (self.last_epoch // self.step_size)
-            for base_lr in self.base_lrs
-        ]
-        if self.last_epoch % self.step_size == 0:
-            print(temp)
-        return temp
+        cycle = math.floor(1 + self.last_epoch / self.step_size)
+        x = abs(self.last_epoch / self.step_size - 2 * cycle + 1)
+        if self.mode == 'triangular':
+            lr = self.max_lr - (self.max_lr / 2) * max(0, (1 - x))
+        elif self.mode == 'triangular2':
+            lr = self.max_lr / 2 * max(0, (1 - x))
+        elif self.mode == 'exp_range':
+            lr = self.max_lr - (self.max_lr / 2) * max(0, (1 - x)) * (self.gamma ** self.last_epoch)
+        return [lr * base_lr for base_lr in self.base_lrs]
