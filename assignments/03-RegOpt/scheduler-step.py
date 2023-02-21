@@ -43,6 +43,6 @@ class CustomLRScheduler(_LRScheduler):
             base_lr * self.gamma ** (self.last_epoch // self.step_size)
             for base_lr in self.base_lrs
         ]
-        if (self.last_epoch % self.step_size == 0):
+        if self.last_epoch % self.step_size == 0:
             print(temp)
         return temp
