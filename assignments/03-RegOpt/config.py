@@ -6,15 +6,14 @@ from torchvision.transforms import (
     Compose,
     Normalize,
     ToTensor,
-    RandomRotation,
     RandomHorizontalFlip,
 )
 
 
 class CONFIG:
     batch_size = 64
-    num_epochs = 6
-    initial_learning_rate = 0.001
+    num_epochs = 10
+    initial_learning_rate = 0.002
     initial_weight_decay = 0
 
     lrs_kwargs = {
@@ -34,7 +33,6 @@ class CONFIG:
         [
             ToTensor(),
             Normalize((0.4915, 0.4823, 0.4468), (0.2470, 0.2435, 0.2616)),
-            RandomRotation(10),
             RandomHorizontalFlip(),
         ]
     )

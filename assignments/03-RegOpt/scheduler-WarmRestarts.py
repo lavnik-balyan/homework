@@ -10,7 +10,9 @@ class CustomLRScheduler(_LRScheduler):
 
     """
 
-    def __init__(self, optimizer, t_0=500, t_mult=1, lr_max=0.001, lr_min=0.0001, last_epoch=-1):
+    def __init__(
+        self, optimizer, t_0=500, t_mult=1, lr_max=0.001, lr_min=0.0001, last_epoch=-1
+    ):
         """
         Create a new scheduler.
 
@@ -28,7 +30,6 @@ class CustomLRScheduler(_LRScheduler):
         self.restart_iteration = 0
         self.cycle_count = 0
         super(CustomLRScheduler, self).__init__(optimizer, last_epoch)
-
 
     def get_lr(self) -> List[float]:
         """
@@ -48,7 +49,7 @@ class CustomLRScheduler(_LRScheduler):
         if self.iteration > self.cycle_len:
             self.iteration = 1
             self.restart_iteration = 1
-            self.cycle_len = int(self.t_0 * (self.t_mult ** self.cycle_count))
+            self.cycle_len = int(self.t_0 * (self.t_mult**self.cycle_count))
             self.cycle_count += 1
 
         x = math.pi * self.restart_iteration / self.cycle_len

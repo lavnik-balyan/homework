@@ -1,6 +1,7 @@
 from typing import List
+import math
 
-from torch.optim.lr_scheduler import _LRScheduler
+from torch.optim.lr_scheduler import _LRScheduler, CosineAnnealingWarmRestarts
 
 
 class CustomLRScheduler(_LRScheduler):
@@ -9,20 +10,24 @@ class CustomLRScheduler(_LRScheduler):
 
     """
 
-    def __init__(self, optimizer, step_size=1000, gamma=0.1, last_epoch=-1):
+    def __init__(self, optimizer, T_0=32, T_mult=16, eta_min=0.0001, last_epoch=-1):
         """
         Create a new scheduler.
 
         Arguments:
-            optimizer (torch.optim.Optimizer): Wrapped optimizer.
-            step_size (int): Period of learning rate decay.
-            gamma (float): Multiplicative factor of learning rate decay.
-            last_epoch (int): The index of the last epoch. Default: -1.
+            optimizer (Optimizer): Wrapped optimizer.
+            T_0 (int): Number of iterations for the first restart.
+            T_mult (int, optional): A factor increases :math:`T_{i}` after a restart. Default: 1.
+            eta_min (float, optional): Minimum learning rate. Default: 0.
+            last_epoch (int, optional): The index of last epoch. Default: -1.
 
         """
         # ... Your Code Here ...
-        self.step_size = step_size
-        self.gamma = gamma
+        self.T_0 = T_0
+        self.T_i = T_0
+        self.T_mult = T_mult
+        self.eta_min = eta_min
+        self.T_cur = last_epoch
         super(CustomLRScheduler, self).__init__(optimizer, last_epoch)
 
     def get_lr(self) -> List[float]:
@@ -39,10 +44,10 @@ class CustomLRScheduler(_LRScheduler):
         # ... Your Code Here ...
         # Here's our dumb baseline implementation:
         # return [i for i in self.base_lrs]
-        temp = [
-            base_lr * self.gamma ** (self.last_epoch // self.step_size)
+        return [
+            self.eta_min
+            + (base_lr - self.eta_min)
+            * (1 + math.cos(math.pi * self.T_cur / self.T_i))
+            / 2
             for base_lr in self.base_lrs
         ]
-        if self.last_epoch % self.step_size == 0:
-            print(temp)
-        return temp
