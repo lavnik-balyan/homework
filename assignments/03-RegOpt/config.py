@@ -12,7 +12,7 @@ from torchvision.transforms import (
 
 class CONFIG:
     batch_size = 64
-    num_epochs = 10
+    num_epochs = 15
     initial_learning_rate = 0.002
     initial_weight_decay = 0
 
