@@ -22,5 +22,4 @@ class Model(torch.nn.Module):
         x = x.view(-1, 128 * 8 * 8)
         x = F.relu(self.fc1(x))
         x = self.fc2(x)
-
         return x
