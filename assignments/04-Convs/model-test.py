@@ -19,9 +19,7 @@ class Model(torch.nn.Module):
         x = self.pool(F.relu(self.conv2(x)))
         x = self.pool(F.relu(self.conv3(x)))
 
-        print(x.shape)
         x = x.view(-1, 128 * 8 * 8)
-        print(x.shape)
         x = F.relu(self.fc1(x))
         x = self.fc2(x)
 
