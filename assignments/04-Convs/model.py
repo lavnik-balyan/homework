@@ -4,7 +4,21 @@ import torch.nn.functional as F
 
 
 class Model(torch.nn.Module):
+    """
+    A CNN for getting 0.55 accuracy on the CIFAR-10 dataset as quickly as possible.
+
+    """
+
     def __init__(self, num_channels: int, num_classes: int) -> None:
+        """
+        Create a new model class.
+
+        Arguments:
+            num_channels (int): Number of input channels.
+            num_classes (int): Number of output classes.
+
+        """
+
         super().__init__()
         self.conv1 = nn.Conv2d(num_channels, 32, 3, padding=1)
         self.conv2 = nn.Conv2d(32, 64, 3, padding=1)
@@ -16,6 +30,11 @@ class Model(torch.nn.Module):
         self.fc3 = nn.Linear(64, num_classes)
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
+        """
+        Forward method for CNN.
+
+        """
+
         x = self.pool(F.relu(self.conv1(x)))
         x = self.pool(F.relu(self.conv2(x)))
         x = self.pool(F.relu(self.conv3(x)))
