@@ -11,6 +11,7 @@
       }
     ],
     "sources": [
-        "Model implementation from past HW and in-pod worksheets"
+        "Model implementation from past HW and in-pod worksheets",
+        "ChatGPT used for experimentation"
     ]
 }
