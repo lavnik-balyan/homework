@@ -2,6 +2,7 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
+
 class Model(torch.nn.Module):
     """
     A CNN for getting 0.55 accuracy on the CIFAR-10 dataset as quickly as possible.
