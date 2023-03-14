@@ -25,7 +25,7 @@ class Model(torch.nn.Module):
         self.pool = nn.MaxPool2d(2, 2)
 
         self.fc1 = nn.Linear(64 * 4 * 4, num_classes)
-        #self.fc2 = nn.Linear(128, num_classes)
+        # self.fc2 = nn.Linear(128, num_classes)
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
         """
@@ -37,6 +37,6 @@ class Model(torch.nn.Module):
         x = self.pool(F.relu(self.conv3(x)))
 
         x = x.view(-1, 64 * 4 * 4)
-        #x = F.relu(self.fc1(x))
+        # x = F.relu(self.fc1(x))
         x = self.fc1(x)
         return x
