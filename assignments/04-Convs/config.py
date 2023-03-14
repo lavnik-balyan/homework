@@ -6,7 +6,7 @@ from torchvision.transforms import Compose, ToTensor, RandomHorizontalFlip
 
 
 class CONFIG:
-    batch_size = 32
+    batch_size = 16
     num_epochs = 8
 
     optimizer_factory: Callable[
