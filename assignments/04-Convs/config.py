@@ -6,7 +6,11 @@ from torchvision.transforms import Compose, ToTensor
 
 
 class CONFIG:
+<<<<<<< HEAD
     batch_size = 40
+=======
+    batch_size = 32
+>>>>>>> 9227f6f2593e34bbd50349edf01ca5771940c3fb
     num_epochs = 8
 
     optimizer_factory: Callable[

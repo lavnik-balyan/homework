@@ -28,13 +28,16 @@ class Model(torch.nn.Module):
         self.fc2 = nn.Linear(64, num_classes)
 =======
         self.conv1 = nn.Conv2d(num_channels, 16, 3, padding=1)
-        self.conv2 = nn.Conv2d(16, 32, 3, padding=1)
-        # self.conv3 = nn.Conv2d(32, 64, 3, padding=1)
+        self.conv2 = nn.Conv2d(16, 16, 3, padding=1)
         self.pool = nn.MaxPool2d(2, 2)
 
+<<<<<<< HEAD
         self.fc1 = nn.Linear(32 * 8 * 8, num_classes)
         # self.fc2 = nn.Linear(128, num_classes)
 >>>>>>> a2f31d8e4507e25ffdffb7660ab3ce9c445d7dce
+=======
+        self.fc1 = nn.Linear(16 * 8 * 8, num_classes)
+>>>>>>> 9227f6f2593e34bbd50349edf01ca5771940c3fb
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
         """
@@ -43,8 +46,8 @@ class Model(torch.nn.Module):
 
         x = self.pool(F.relu(self.conv1(x)))
         x = self.pool(F.relu(self.conv2(x)))
-        # x = self.pool(F.relu(self.conv3(x)))
 
+<<<<<<< HEAD
 <<<<<<< HEAD
         x = x.view(-1, 32 * 4 * 4)
         x = F.relu(self.fc1(x))
@@ -52,6 +55,9 @@ class Model(torch.nn.Module):
 =======
         x = x.view(-1, 32 * 8 * 8)
         # x = F.relu(self.fc1(x))
+=======
+        x = x.view(-1, 16 * 8 * 8)
+>>>>>>> 9227f6f2593e34bbd50349edf01ca5771940c3fb
         x = self.fc1(x)
 >>>>>>> a2f31d8e4507e25ffdffb7660ab3ce9c445d7dce
         return x
