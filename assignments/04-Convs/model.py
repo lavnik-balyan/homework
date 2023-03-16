@@ -19,9 +19,9 @@ class Model(torch.nn.Module):
         """
 
         super().__init__()
-        self.conv1 = nn.Conv2d(num_channels, 15, 3, padding=1)
+        self.conv1 = nn.Conv2d(num_channels, 14, 3, padding=1)
         self.pool = nn.MaxPool2d(2, 2)
-        self.fc1 = nn.Linear(15 * 16 * 16, num_classes)
+        self.fc1 = nn.Linear(14 * 16 * 16, num_classes)
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
         """
@@ -29,6 +29,6 @@ class Model(torch.nn.Module):
         """
 
         x = self.pool(F.relu(self.conv1(x)))
-        x = x.view(-1, 15 * 16 * 16)
+        x = x.view(-1, 14 * 16 * 16)
         x = self.fc1(x)
         return x
