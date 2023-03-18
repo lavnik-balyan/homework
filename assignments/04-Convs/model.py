@@ -23,7 +23,7 @@ class Model(torch.nn.Module):
         self.batchnorm = nn.BatchNorm2d(16)
         self.pool = nn.MaxPool2d(2, 2)
         self.fc1 = nn.Linear(16 * 7 * 7, 128)
-        self.fc2= nn.Linear(128, num_classes)
+        self.fc2 = nn.Linear(128, num_classes)
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
         """
