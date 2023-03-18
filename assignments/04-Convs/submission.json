@@ -12,6 +12,7 @@
     ],
     "sources": [
         "Model implementation from past HW and in-pod worksheets",
-        "ChatGPT used for experimentation"
+        "StackOverflow recommendation to add BatchNorm2d layer before pooling",
+        "Ran about ~200 experiments :) with different learning rates and batch sizes"
     ]
 }
