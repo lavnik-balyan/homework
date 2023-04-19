@@ -2,9 +2,16 @@ import gymnasium as gym
 
 
 class Agent:
+    """
+    Agent Class
+    """
+
     def __init__(
         self, action_space: gym.spaces.Discrete, observation_space: gym.spaces.Box
     ):
+        """
+        init variables
+        """
         self.action_space = action_space
         self.observation_space = observation_space
 
@@ -12,6 +19,7 @@ class Agent:
         """
         Takes an observation and returns an action.
         """
+
         return self.action_space.sample()
 
     def learn(
@@ -25,4 +33,5 @@ class Agent:
         Takes an observation, a reward, a boolean indicating whether the episode has terminated,
         and a boolean indicating whether the episode was truncated.
         """
+
         pass
