@@ -9,6 +9,9 @@ class Agent:
         self.observation_space = observation_space
 
     def act(self, observation: gym.spaces.Box) -> gym.spaces.Discrete:
+        """
+        Takes an observation and returns an action.
+        """
         return self.action_space.sample()
 
     def learn(
@@ -18,4 +21,8 @@ class Agent:
         terminated: bool,
         truncated: bool,
     ) -> None:
+        """
+        Takes an observation, a reward, a boolean indicating whether the episode has terminated,
+        and a boolean indicating whether the episode was truncated.
+        """
         pass
