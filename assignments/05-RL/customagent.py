@@ -21,18 +21,19 @@ class Agent:
         """
 
         x, y, dx, dy, angle, angular_speed, l_leg, r_leg = observation
+        action = 0
 
         # Rule 1: If the lander is tilting left, fire the right engine
         if angle < -0.1:
-            return 2
+            action = 2
         # Rule 2: If the lander is tilting right, fire the left engine
         if angle > 0.1:
-            return 1
+            action = 1
         # Rule 3: If the lander is falling too fast, fire the main engine
         if dy < -0.3:
-            return 3
+            action = 3
         # If no rules apply, do nothing
-        return 0
+        return action
 
     def learn(
         self,
