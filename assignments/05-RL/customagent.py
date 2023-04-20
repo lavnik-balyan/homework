@@ -20,24 +20,6 @@ class Agent:
         Takes an observation and returns an action.
         """
 
-        # x, y, vx, vy, angle, angular_velocity, contact_left, contact_right = observation
-        #
-        # # Heuristic for landing the lander
-        # if abs(angle) > 0.1:
-        #     # If the angle is too steep, counteract the rotation
-        #     action = 0 if angle < 0 else 2
-        # elif abs(angular_velocity) > 0.1:
-        #     # If the angular velocity is too high, counteract it
-        #     action = 0 if angular_velocity < 0 else 2
-        # elif abs(vy) > 0.2 or abs(vx) > 0.1:
-        #     # If the lander is descending too fast or moving horizontally too fast, fire the main engine
-        #     action = 3
-        # else:
-        #     # Otherwise, do nothing
-        #     action = 1
-        #
-        # return action
-
         x, y, dx, dy, angle, angular_speed, l_leg, r_leg = observation
 
         # Rule 1: If the lander is tilting left, fire the right engine
