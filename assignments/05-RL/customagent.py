@@ -20,20 +20,34 @@ class Agent:
         Takes an observation and returns an action.
         """
 
-        x, y, dx, dy, angle, angular_speed, l_leg, r_leg = observation
-        action = 0
+        angle_targ = (
+            observation[0] * 0.5 + observation[2] * 1.0
+        )  # angle should point towards center
+        if angle_targ > 0.4:
+            angle_targ = 0.4  # more than 0.4 radians (22 degrees) is bad
+        if angle_targ < -0.4:
+            angle_targ = -0.4
+        hover_targ = 0.55 * np.abs(
+            observation[0]
+        )  # target y should be proportional to horizontal offset
 
-        # Rule 1: If the lander is tilting left, fire the right engine
-        if angle < -0.1:
-            action = 2
-        # Rule 2: If the lander is tilting right, fire the left engine
-        if angle > 0.1:
-            action = 1
-        # Rule 3: If the lander is falling too fast, fire the main engine
-        if dy < -0.3:
-            action = 3
-        # If no rules apply, do nothing
-        return action
+        angle_todo = (angle_targ - observation[4]) * 0.5 - (observation[5]) * 1.0
+        hover_todo = (hover_targ - observation[1]) * 0.5 - (observation[3]) * 0.5
+
+        if observation[6] or observation[7]:  # legs have contact
+            angle_todo = 0
+            hover_todo = (
+                -(observation[3]) * 0.5
+            )  # override to reduce fall speed, that's all we need after contact
+
+        a = 0
+        if hover_todo > np.abs(angle_todo) and hover_todo > 0.05:
+            a = 2
+        elif angle_todo < -0.05:
+            a = 3
+        elif angle_todo > +0.05:
+            a = 1
+        return a
 
     def learn(
         self,
