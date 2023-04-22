@@ -21,25 +21,20 @@ class Agent:
         Takes an observation and returns an action.
         """
 
-        angle_targ = (
-            observation[0] * 0.5 + observation[2] * 1.0
-        )  # angle should point towards center
+        angle_targ = observation[0] * 0.5 + observation[2] * 1.0
+
         if angle_targ > 0.4:
-            angle_targ = 0.4  # more than 0.4 radians (22 degrees) is bad
+            angle_targ = 0.4
         if angle_targ < -0.4:
             angle_targ = -0.4
-        hover_targ = 0.55 * np.abs(
-            observation[0]
-        )  # target y should be proportional to horizontal offset
+        hover_targ = 0.55 * np.abs(observation[0])
 
         angle_todo = (angle_targ - observation[4]) * 0.5 - (observation[5]) * 1.0
         hover_todo = (hover_targ - observation[1]) * 0.5 - (observation[3]) * 0.5
 
-        if observation[6] or observation[7]:  # legs have contact
+        if observation[6] or observation[7]:
             angle_todo = 0
-            hover_todo = (
-                -(observation[3]) * 0.5
-            )  # override to reduce fall speed, that's all we need after contact
+            hover_todo = -(observation[3]) * 0.5
 
         a = 0
         if hover_todo > np.abs(angle_todo) and hover_todo > 0.05:
